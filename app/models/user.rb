@@ -5,5 +5,5 @@ class User < ApplicationRecord
 	validates :password, length: {minimum: 6, too_short: "length must be at least %{count} characters long" }
 	validates :email, presence: { message: "\"email\" is required" }, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "\"email\" must be a valid email" }
 
-	has_many :posts
+	has_many :posts, dependent: :destroy
 end
